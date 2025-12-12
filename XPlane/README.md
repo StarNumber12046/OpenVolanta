@@ -14,7 +14,7 @@
 
 ## Installation
 
-1. Download the latest release from the [releases](https://github.com/StarNumberXR/OpenVolanta/releases) page (coming soon, compile it for now :/)
+1. Download the latest release from the [releases](https://github.com/StarNumber12046/OpenVolanta/releases) page (coming soon, compile it for now :/)
 2. Copy the XPlane folder into your X-Plane 12 plugins folder
 3. Remove the stock plugin
 4. Enjoy :D
