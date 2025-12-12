@@ -2,10 +2,15 @@
 
 ## Features
 
-[x] Flight info
-[x] Flight path
-[x] Aircraft info (better than the stock plugin)
-[ ] Landings (can be done with the OpenVolanta LandingRate plugin)
+- [x] Flight info
+
+- [x] Flight path
+
+- [x] Aircraft info (better than the stock plugin)
+
+- [ ] Landings (can be done with the OpenVolanta LandingRate plugin)
+
+- [ ] Coins all over the world (who even uses them lol)
 
 ## Installation
 
