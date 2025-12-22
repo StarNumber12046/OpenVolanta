@@ -11,6 +11,8 @@
 #include "XPLMProcessing.h"
 #include "XPLMPlugin.h"
 #include "XPLMPlanes.h"
+#include <regex>
+#include <algorithm>
 #include <string.h>
 #if LIN
 	#include <GL/gl.h>
@@ -24,6 +26,8 @@
 #ifndef XPLM300
 	#error This is made to be compiled against the XPLM300 SDK
 #endif
+
+#define METERS_TO_FT 3.28084
 
 XPLMDataRef dr_lat, dr_lon, dr_alt_amsl, dr_alt_agl;
 XPLMDataRef dr_pitch, dr_bank, dr_heading;
@@ -39,11 +43,60 @@ XPLMDataRef dr_ap_engaged;
 XPLMDataRef dr_eng_running;
 XPLMDataRef dr_parking_brake;
 XPLMDataRef dr_wind_speed, dr_wind_dir;
+XPLMDataRef livery_path;
 
 XPLMDataRef acf_icao, acf_reg;
 
 SOCKET tcp_sock;
 struct sockaddr_in tcp_addr;
+
+bool extract_registration_to_buffer(
+    const std::string& livery_name,
+    char* output_buffer,
+    size_t buffer_size)
+{
+    // Ensure the output buffer is null-terminated immediately in case of failure
+    if (buffer_size > 0) {
+        output_buffer[0] = '\0';
+    }
+    else {
+        return false; // Cannot write to a zero-size buffer
+    }
+
+    // 1. Define the Regular Expression (Same as disassembly)
+    const std::regex registration_regex(
+        "[A-Z]-[A-Z]{4}|"           // e.g., G-ABCD
+        "([A-Z]|[1-9]){2}-[A-Z]{3}|"        // e.g., EI-GJK, 9H-QDU
+        "N[0-9]{1,5}[A-Z]{0,2}",    // e.g., N12345, N1A, N12AB
+        std::regex::ECMAScript
+    );
+
+    // 2. Define the Match Results Container
+    std::smatch match_results;
+
+    // 3. Perform the Regex Search
+    if (std::regex_search(livery_name, match_results, registration_regex)) {
+
+        // The entire matched registration is at index 0
+        const std::string registration = match_results[0].str();
+
+        // 4. Copy the result to the C-style buffer
+
+        // Determine the length to copy, ensuring it doesn't exceed the buffer size - 1
+        size_t copy_len = (((registration.length()) < (buffer_size - 1)) ? (registration.length()) : (buffer_size - 1));
+
+        // Copy the characters
+        std::strncpy(output_buffer, registration.c_str(), copy_len);
+
+        // Explicitly null-terminate the string in the buffer
+        output_buffer[copy_len] = '\0';
+
+        return true;
+    }
+
+    // No match found, buffer is already null-terminated by the initial check
+    return false;
+}
 
 void FindDatarefs() {
 	dr_lat = XPLMFindDataRef("sim/flightmodel/position/latitude");
@@ -79,8 +132,13 @@ void FindDatarefs() {
 
 	acf_icao = XPLMFindDataRef("sim/aircraft/view/acf_ICAO");
     acf_reg = XPLMFindDataRef("sim/aircraft/view/acf_tailnum");
+
+    livery_path = XPLMFindDataRef("sim/aircraft/view/acf_livery_path");
 }
 
+void HandleAircraftLoad() {
+
+}
 
 
 void SetupTCPSocket()
@@ -173,7 +231,10 @@ float SendPosition(
         "\"wind_speed\":%.6f,"
         "\"wind_direction\":%.6f"
         "}}",
-        altA, altG, lat, lon,
+        altA * METERS_TO_FT, 
+        altG * METERS_TO_FT, 
+        lat, 
+        lon,
         pitch, bank, hdg,
         gs, vs, fuel, grav,
         xpndr,
@@ -192,10 +253,6 @@ float SendPosition(
     if (sent < 0) {
 		SetupTCPSocket();  // Try to reconnect
         XPLMDebugString(json); // Log the failure
-    }
-    else {
-		XPLMDebugString("OpenVolanta: Sent position update\n");
-        XPLMDebugString(json);
     }
 	return 0.1f;  // Run again in .1 seconds
 }
@@ -239,7 +296,7 @@ PLUGIN_API void XPluginReceiveMessage(XPLMPluginID inFrom, int inMsg, void * inP
 	char output[256];
 	snprintf(output, sizeof(output), "OpenVolanta: Received message %d from plugin %d - param: %d\n", inMsg, inFrom, (int)inParam);
     XPLMDebugString(output);
-	if (inMsg == XPLM_MSG_PLANE_LOADED) {
+	if (inMsg == XPLM_MSG_LIVERY_LOADED) {
         char icao[256];
         int icaoLength = XPLMGetDatab(acf_icao, NULL, 0, 0);
         if (icaoLength > 0 && icaoLength <= 40) {
@@ -247,12 +304,30 @@ PLUGIN_API void XPluginReceiveMessage(XPLMPluginID inFrom, int inMsg, void * inP
             icao[39] = '\0';
         }
 		char reg[256];
-        char regLength[256];
-        int length = XPLMGetDatab(acf_reg, NULL, 0, 0);
-        if (length > 0 && length <= 40) {
-            XPLMGetDatab(acf_reg, &reg, 0, length);
-            icao[39] = '\0';
+		char current_livery_path[256];
+        int liveryLength = XPLMGetDatab(livery_path, NULL, 0, 0);
+        if (liveryLength > 0 && liveryLength <= 255) {
+            XPLMGetDatab(livery_path, &current_livery_path, 0, liveryLength);
+            current_livery_path[255] = '\0';
         }
+        XPLMDebugString("OpenVolanta: Livery path: ");
+		XPLMDebugString(current_livery_path);
+
+		bool success = extract_registration_to_buffer(current_livery_path, reg, sizeof(reg));
+        if (!success) {
+            // Fallback to acf_tailnum dataref
+            reg[0] = '\0';
+            int length = XPLMGetDatab(acf_reg, NULL, 0, 0);
+            if (length > 0 && length <= 40) {
+                XPLMGetDatab(acf_reg, &reg, 0, length);
+                icao[39] = '\0';
+            }
+        }
+        else {
+            XPLMDebugString("OpenVolanta: Successfully extracted registration from livery name\n");
+			XPLMDebugString(reg);
+        }
+		XPLMDebugString("OpenVolanta: Extracted registration: ");
         XPLMDebugString("OpenVolanta: Plane loaded, sending plane info to Volanta\n");
         char json[1024];
         snprintf(json, sizeof(json),
@@ -269,7 +344,6 @@ PLUGIN_API void XPluginReceiveMessage(XPLMPluginID inFrom, int inMsg, void * inP
         }
         else {
             XPLMDebugString("OpenVolanta: Sent aircraft update\n");
-            XPLMDebugString(json);
         }
     }
 }
