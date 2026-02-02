@@ -35,11 +35,11 @@ jobs:
 
       - name: Build XPlane (C++)
         run: |
-          msbuild XPlane/XPlane.vcxproj /p:Configuration=Release /p:Platform=x64
+          msbuild XPlane/XPlane.vcxproj /p:Configuration=Release /p:Platform=x64 /p:OutDir=${{ github.workspace }}\build\xplane\
 
       - name: Copy XPlane Artifacts
         run: |
-          copy XPlane\Release\plugins\OpenVolanta\64\OpenVolanta.xpl build\OpenVolanta.xpl
+          copy build\xplane\OpenVolanta.xpl build\OpenVolanta.xpl
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
