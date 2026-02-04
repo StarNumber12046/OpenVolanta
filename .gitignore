@@ -298,5 +298,8 @@ XPlane/.ionide/
 # Fody - auto-generated XML schema
 XPlane/FodyWeavers.xsd
 
+XPlane_udp/build
 
 packet/volanta.log
+
+build/

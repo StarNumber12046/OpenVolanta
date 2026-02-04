@@ -20,7 +20,7 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v5
         with:
-          go-version: 'stable'
+          go-version: "stable"
 
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
@@ -32,6 +32,11 @@ jobs:
         run: |
           cd packet
           go build -o ../build/packet.exe .
+
+      - name: Build XPlane UDP (Go)
+        run: |
+          cd xplane_udp
+          go build -o ../build/XPlane_udp.exe ./src
 
       - name: Build XPlane (C++)
         run: |
