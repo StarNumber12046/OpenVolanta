@@ -303,3 +303,304 @@ XPlane_udp/build
 packet/volanta.log
 
 build/
+
+# User-specific files
+SimConnect/*.rsuser
+SimConnect/*.suo
+SimConnect/*.user
+SimConnect/*.userosscache
+SimConnect/*.sln.docstates
+
+# User-specific files (MonoDevelop/Xamarin Studio)
+SimConnect/*.userprefs
+
+# Mono auto generated files
+SimConnect/mono_crash.*
+
+# Build results
+SimConnect/[Dd]ebug/
+SimConnect/[Dd]ebugPublic/
+SimConnect/[Rr]elease/
+SimConnect/[Rr]eleases/
+SimConnect/x64/
+SimConnect/x86/
+SimConnect/[Ww][Ii][Nn]32/
+SimConnect/[Aa][Rr][Mm]/
+SimConnect/[Aa][Rr][Mm]64/
+SimConnect/bld/
+SimConnect/[Bb]in/
+SimConnect/[Oo]bj/
+SimConnect/[Oo]ut/
+SimConnect/[Ll]og/
+SimConnect/[Ll]ogs/
+
+# Visual Studio 2015/2017 cache/options directory
+SimConnect/.vs/
+# Uncomment if you have tasks that create the project's static files in wwwroot
+#wwwroot/
+
+# Visual Studio 2017 auto generated files
+SimConnect/Generated\ Files/
+
+# MSTest test Results
+SimConnect/[Tt]est[Rr]esult*/
+SimConnect/[Bb]uild[Ll]og.*
+
+# NUnit
+SimConnect/*.VisualState.xml
+SimConnect/TestResult.xml
+SimConnect/nunit-*.xml
+
+# Build Results of an ATL Project
+SimConnect/[Dd]ebugPS/
+SimConnect/[Rr]eleasePS/
+SimConnect/dlldata.c
+
+# Benchmark Results
+SimConnect/BenchmarkDotNet.Artifacts/
+
+# .NET Core
+SimConnect/project.lock.json
+SimConnect/project.fragment.lock.json
+SimConnect/artifacts/
+
+# ASP.NET Scaffolding
+SimConnect/ScaffoldingReadMe.txt
+
+# StyleCop
+SimConnect/StyleCopReport.xml
+
+# Files built by Visual Studio
+SimConnect/*_i.c
+SimConnect/*_p.c
+SimConnect/*_h.h
+SimConnect/*.ilk
+SimConnect/*.meta
+SimConnect/*.obj
+SimConnect/*.iobj
+SimConnect/*.pch
+SimConnect/*.pdb
+SimConnect/*.ipdb
+SimConnect/*.pgc
+SimConnect/*.pgd
+SimConnect/*.rsp
+SimConnect/*.sbr
+SimConnect/*.tlb
+SimConnect/*.tli
+SimConnect/*.tlh
+SimConnect/*.tmp
+SimConnect/*.tmp_proj
+SimConnect/*_wpftmp.csproj
+SimConnect/*.log
+SimConnect/*.vspscc
+SimConnect/*.vssscc
+SimConnect/.builds
+SimConnect/*.pidb
+SimConnect/*.svclog
+SimConnect/*.scc
+
+# Chutzpah Test files
+SimConnect/_Chutzpah*
+
+# Visual C++ cache files
+SimConnect/ipch/
+SimConnect/*.aps
+SimConnect/*.ncb
+SimConnect/*.opendb
+SimConnect/*.opensdf
+SimConnect/*.sdf
+SimConnect/*.cachefile
+SimConnect/*.VC.db
+SimConnect/*.VC.VC.opendb
+
+# Visual Studio profiler
+SimConnect/*.psess
+SimConnect/*.vsp
+SimConnect/*.vspx
+SimConnect/*.sap
+
+# Visual Studio Trace Files
+SimConnect/*.e2e
+
+# TFS 2012 Local Workspace
+SimConnect/$tf/
+
+# Guidance Automation Toolkit
+SimConnect/*.gpState
+
+# ReSharper is a .NET coding add-in
+SimConnect/_ReSharper*/
+SimConnect/*.[Rr]e[Ss]harper
+SimConnect/*.DotSettings.user
+
+# TeamCity is a build add-in
+SimConnect/_TeamCity*
+
+# DotCover is a Code Coverage Tool
+SimConnect/*.dotCover
+
+# AxoCover is a Code Coverage Tool
+SimConnect/.axoCover/*
+SimConnect/!.axoCover/settings.json
+
+# Coverlet is a free, cross platform Code Coverage Tool
+SimConnect/coverage*.json
+SimConnect/coverage*.xml
+SimConnect/coverage*.info
+
+# Visual Studio code coverage results
+SimConnect/*.coverage
+SimConnect/*.coveragexml
+
+# NCrunch
+SimConnect/_NCrunch_*
+SimConnect/.*crunch*.local.xml
+SimConnect/nCrunchTemp_*
+
+# MightyMoose
+SimConnect/*.mm.*
+SimConnect/AutoTest.Net/
+
+# Web workbench (sass)
+SimConnect/.sass-cache/
+
+# Installshield output folder
+SimConnect/[Ee]xpress/
+
+# DocProject is a documentation generator add-in
+SimConnect/DocProject/buildhelp/
+SimConnect/DocProject/Help/*.HxT
+SimConnect/DocProject/Help/*.HxC
+SimConnect/DocProject/Help/*.hhc
+SimConnect/DocProject/Help/*.hhk
+SimConnect/DocProject/Help/*.hhp
+SimConnect/DocProject/Help/Html2
+SimConnect/DocProject/Help/html
+
+# Click-Once directory
+SimConnect/publish/
+
+# Publish Web Output
+SimConnect/*.[Pp]ublish.xml
+SimConnect/*.azurePubxml
+# Note: Comment the next line if you want to checkin your web deploy settings,
+# but database connection strings (with potential passwords) will be unencrypted
+SimConnect/*.pubxml
+SimConnect/*.publishproj
+
+# Microsoft Azure Web App publish settings. Comment the next line if you want to
+# checkin your Azure Web App publish settings, but sensitive information contained
+# in these scripts will be unencrypted
+SimConnect/PublishScripts/
+
+# NuGet Packages
+SimConnect/*.nupkg
+# NuGet Symbol Packages
+SimConnect/*.snupkg
+# The packages folder can be ignored because of Package Restore
+SimConnect/**/[Pp]ackages/*
+# except build/, which is used as an MSBuild target.
+SimConnect/!**/[Pp]ackages/build/
+# Uncomment if necessary however generally it will be regenerated when needed
+#!**/[Pp]ackages/repositories.config
+# NuGet v3's project.json files produces more ignorable files
+SimConnect/*.nuget.props
+SimConnect/*.nuget.targets
+
+# Microsoft Azure Build Output
+SimConnect/csx/
+SimConnect/*.build.csdef
+
+# Microsoft Azure Emulator
+SimConnect/ecf/
+SimConnect/rcf/
+
+# Windows Store app package directories and files
+SimConnect/AppPackages/
+SimConnect/BundleArtifacts/
+SimConnect/Package.StoreAssociation.xml
+SimConnect/_pkginfo.txt
+SimConnect/*.appx
+SimConnect/*.appxbundle
+SimConnect/*.appxupload
+
+# Visual Studio cache files
+# files ending in .cache can be ignored
+SimConnect/*.[Cc]ache
+# but keep track of directories ending in .cache
+SimConnect/!?*.[Cc]ache/
+
+# Others
+SimConnect/ClientBin/SimConnect/~$*SimConnect/*~SimConnect/*.dbmdlSimConnect/*.dbproj.schemaviewSimConnect/*.jfmSimConnect/*.pfxSimConnect/*.publishsettingsSimConnect/orleans.codegen.cs
+# Including strong name files can present a security risk
+# (https://github.com/github/gitignore/pull/2483#issue-259490424)
+#*.snk
+
+# Since there are multiple workflows, uncomment next line to ignore bower_components
+# (https://github.com/github/gitignore/pull/1529#issuecomment-104372622)
+#bower_components/
+
+# RIA/Silverlight projects
+SimConnect/Generated_Code/
+# Backup & report files from converting an old project file
+# to a newer Visual Studio version. Backup files are not needed,
+# because we have git ;-)
+SimConnect/_UpgradeReport_Files/SimConnect/Backup*/SimConnect/UpgradeLog*.XMLSimConnect/UpgradeLog*.htmSimConnect/ServiceFabricBackup/SimConnect/*.rptproj.bak
+# SQL Server files
+SimConnect/*.mdfSimConnect/*.ldfSimConnect/*.ndf
+# Business Intelligence projects
+SimConnect/*.rdl.dataSimConnect/*.bim.layoutSimConnect/*.bim_*.settingsSimConnect/*.rptproj.rsuserSimConnect/*- [Bb]ackup.rdlSimConnect/*- [Bb]ackup ([0-9]).rdlSimConnect/*- [Bb]ackup ([0-9][0-9]).rdl
+# Microsoft Fakes
+SimConnect/FakesAssemblies/
+# GhostDoc plugin setting file
+SimConnect/*.GhostDoc.xml
+# Node.js Tools for Visual Studio
+SimConnect/.ntvs_analysis.datSimConnect/node_modules/
+# Visual Studio 6 build log
+SimConnect/*.plg
+# Visual Studio 6 workspace options file
+SimConnect/*.opt
+# Visual Studio 6 auto-generated workspace file (contains which files were open etc.)
+SimConnect/*.vbw
+# Visual Studio LightSwitch build output
+SimConnect/**/*.HTMLClient/GeneratedArtifactsSimConnect/**/*.DesktopClient/GeneratedArtifactsSimConnect/**/*.DesktopClient/ModelManifest.xmlSimConnect/**/*.Server/GeneratedArtifactsSimConnect/**/*.Server/ModelManifest.xmlSimConnect/_Pvt_Extensions
+# Paket dependency manager
+SimConnect/.paket/paket.exeSimConnect/paket-files/
+# FAKE - F# Make
+SimConnect/.fake/
+# CodeRush personal settings
+SimConnect/.cr/personal
+# Python Tools for Visual Studio (PTVS)
+SimConnect/__pycache__/SimConnect/*.pyc
+# Cake - Uncomment if you are using it
+# tools/**
+# !tools/packages.config
+
+# Tabs Studio
+SimConnect/*.tss
+# Telerik's JustMock configuration file
+SimConnect/*.jmconfig
+# BizTalk build output
+SimConnect/*.btp.csSimConnect/*.btm.csSimConnect/*.odx.csSimConnect/*.xsd.cs
+# OpenCover UI analysis results
+SimConnect/OpenCover/
+# Azure Stream Analytics local run output
+SimConnect/ASALocalRun/
+# MSBuild Binary and Structured Log
+SimConnect/*.binlog
+# NVidia Nsight GPU debugger configuration file
+SimConnect/*.nvuser
+# MFractors (Xamarin productivity tool) working folder
+SimConnect/.mfractor/
+# Local History for Visual Studio
+SimConnect/.localhistory/
+# BeatPulse healthcheck temp database
+SimConnect/healthchecksdb
+# Backup folder for Package Reference Convert tool in Visual Studio 2017
+SimConnect/MigrationBackup/
+# Ionide (cross platform F# VS Code tools) working folder
+SimConnect/.ionide/
+# Fody - auto-generated XML schema
+SimConnect/FodyWeavers.xsd
+
+SimConnect/SimConnect
