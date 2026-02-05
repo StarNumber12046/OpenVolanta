@@ -91,7 +91,7 @@ function lrl_sendDataOverTCP()
         -- Retrieve live dataref values... (rest of the dataref retrieval code remains here)
         local pitch = lrl_pitch
         local roll = lrl_roll
-        local ground_speed = lrl_gs
+        local ground_speed = lrl_gs * 1.943844 -- m/s to knots
         local latitude = lrl_lat
         local longitude = lrl_lon
         local heading = lrl_heading
