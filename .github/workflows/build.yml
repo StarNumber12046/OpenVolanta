@@ -38,6 +38,10 @@ jobs:
           cd xplane_udp
           go build -o ../build/XPlane_udp.exe ./src
 
+      - name: Build SimConnect (C++)
+        run: |
+          msbuild SimConnect/SimConnect.vcxproj /p:Configuration=Release /p:Platform=x64 /p:OutDir=${{ github.workspace }}\build\
+
       - name: Build XPlane (C++)
         run: |
           msbuild XPlane/XPlane.vcxproj /p:Configuration=Release /p:Platform=x64 /p:OutDir=${{ github.workspace }}\build\temp_xplane\
@@ -60,6 +64,7 @@ jobs:
             build/packet.exe
             build/OpenVolanta.zip
             build/XPlane_udp.exe
+            build/SimConnect.exe
 
       - name: Create Release
         if: startsWith(github.ref, 'refs/tags/')
@@ -69,6 +74,7 @@ jobs:
             build/packet.exe
             build/OpenVolanta.zip
             build/XPlane_udp.exe
+            build/SimConnect.exe
 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
